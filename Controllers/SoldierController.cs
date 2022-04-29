@@ -41,7 +41,7 @@ public class SoldierController : ControllerBase
         return editedInfo;
     }
     
-        [HttpPost]
+  /*      [HttpPost]
     
     public async Task<ActionResult<Soldier>> Post(Soldier newSoldier)
     {
@@ -49,7 +49,7 @@ public class SoldierController : ControllerBase
         await _context.SaveChangesAsync(); 
         return CreateAtAction("Get", new{id = newSoldier}, newSoldier);
     }
-    
+    */
 
 
 }
