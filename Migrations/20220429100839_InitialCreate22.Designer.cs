@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ArmyAPI.Migrations
 {
     [DbContext(typeof(ArmyContext))]
-    [Migration("20220429094156_InitialCreate19")]
-    partial class InitialCreate19
+    [Migration("20220429100839_InitialCreate22")]
+    partial class InitialCreate22
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -57,7 +57,7 @@ namespace ArmyAPI.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Manufacturer")
+                    b.Property<string>("Country")
                         .HasColumnType("TEXT");
 
                     b.Property<int>("TopSpeed")
@@ -69,8 +69,8 @@ namespace ArmyAPI.Migrations
                     b.Property<bool?>("Weaponized")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("Weight")
-                        .HasColumnType("INTEGER");
+                    b.Property<double>("Weight")
+                        .HasColumnType("REAL");
 
                     b.HasKey("Id");
 

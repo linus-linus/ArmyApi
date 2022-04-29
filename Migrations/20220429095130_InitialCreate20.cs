@@ -4,7 +4,7 @@
 
 namespace ArmyAPI.Migrations
 {
-    public partial class InitialCreate19 : Migration
+    public partial class InitialCreate20 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
