@@ -41,15 +41,12 @@ public class SoldierController : ControllerBase
         return editedInfo;
     }
     
-  /*      [HttpPost]
-    
-    public async Task<ActionResult<Soldier>> Post(Soldier newSoldier)
-    {
-        _context.Soldier.Add(newSoldier);
-        await _context.SaveChangesAsync(); 
-        return CreateAtAction("Get", new{id = newSoldier}, newSoldier);
-    }
-    */
+    // [HttpPost]
+    // public async Task<ActionResult<Soldier>> Post(Soldier newSoldier)
+    // {
+    //     _context.Soldier.Add(newSoldier);
+    //     await _context.SaveChangesAsync(); 
 
-
-}
+    //     return CreatedAtAction("Get", new { id = newSoldier.Id}, newSoldier);
+    // }
+ }
