@@ -37,4 +37,10 @@ obj/Debug/net6.0/ref/ArmyAPI.dll
 obj/Debug/net6.0/refint/ArmyAPI.dll
 obj/project.assets.json
 obj/project.nuget.cache
+*.suo
+*.user
+_ReSharper.*
+bin/*
+obj/*
+packages
 obj/staticwebassets.pack.sentinel
