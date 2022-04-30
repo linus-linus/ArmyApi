@@ -39,5 +39,13 @@ public class WeaponController : ControllerBase
         
         return editedWeapon;
     }
+
+    [HttpPost]
+    public async Task<ActionResult<Weapon>> Post(Weapon newWeapon)
+    {
+        _context.Weapon.Add(newWeapon);
+        await _context.SaveChangesAsync();
+        return CreatedAtAction("Get", new {id = newWeapon.Id}, newWeapon);
+    }
 }
 
