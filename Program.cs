@@ -32,6 +32,13 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+DefaultFilesOptions newOptions = new DefaultFilesOptions();
+newOptions.DefaultFileNames.Add("index.html");
+
+app.UseDefaultFiles(newOptions);
+
+app.UseStaticFiles();
+
 app.UseCors("AllowAnyOrigin");
 app.UseHttpsRedirection();
 
