@@ -39,4 +39,13 @@ public class VehicleController : ControllerBase
 
         return editedVehicle;
     }
+
+    [HttpDelete("{id}")]
+    public async Task<ActionResult> Delete(int id)
+    {
+        Vehicle vehicle = await _context.Vehicle.FindAsync(id);
+        _context.Vehicle.Remove(vehicle);
+        await _context.SaveChangesAsync();
+        return NoContent();
+    }
 }
