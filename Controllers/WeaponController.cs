@@ -47,5 +47,15 @@ public class WeaponController : ControllerBase
         await _context.SaveChangesAsync();
         return CreatedAtAction("Get", new {id = newWeapon.Id}, newWeapon);
     }
+
+    [HttpDelete("{id}")]
+    public async Task<ActionResult> Delete(int id)
+    {
+        Weapon weapon = await _context.Weapon.FindAsync(id);
+        _context.Weapon.Remove(weapon);
+        await _context.SaveChangesAsync();
+        return NoContent();
+    }
+
 }
 
