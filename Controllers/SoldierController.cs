@@ -27,9 +27,16 @@ public class SoldierController : ControllerBase
     public async Task<ActionResult<Soldier>> Get(int id)
     {
         Soldier soldier = await _context.Soldier.FindAsync(id);
-        return soldier;
 
-        //Legg inn if/else !!!!!!!!!!!!!!!!!
+        if(soldier != null)
+        {
+            return soldier;
+        }
+        else
+        {
+            return NotFound();
+        }
+
     }
 
     [HttpPut]
