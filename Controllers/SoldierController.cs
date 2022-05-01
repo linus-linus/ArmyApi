@@ -49,4 +49,13 @@ public class SoldierController : ControllerBase
 
         return CreatedAtAction("Get", new { id = newSoldier.Id}, newSoldier);
     }
+
+    [HttpDelete("{id}")]
+    public async Task<ActionResult> Delete(int id)
+    {
+        Soldier soldier = await _context.Soldier.FindAsync(id);
+        _context.Soldier.Remove(soldier);
+        await _context.SaveChangesAsync();
+        return NoContent();
+    }
  }

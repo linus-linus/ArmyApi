@@ -11,7 +11,7 @@ public class Weapon
     public string? Name { get; set; }
     public string? Country { get; set; }
     public int Capacity { get; set; }
-    public string? RateOfFire { get; set; }
+    public int RateOfFire { get; set; }
     public Boolean? Damage { get; set; }
 
 }
