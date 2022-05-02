@@ -31,6 +31,20 @@ public class WeaponController : ControllerBase
         return weapon;
     }
 
+    [HttpGet("{type}")]
+    [Route("[action]/{type}")]
+    public async Task<ActionResult<List<Weapon>>> Get(string type)
+    {        
+        List<Weapon> weapons = await _context.Weapon
+            .Where( 
+                weapon => weapon.Type.ToLower().Contains(type.ToLower()) 
+            )
+            .ToListAsync();
+
+        return weapons;  
+    }
+
+
     [HttpPut]
     public async Task<ActionResult<Weapon>> Put(Weapon editedWeapon)
     {
