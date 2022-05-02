@@ -25,6 +25,8 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
+app.UseCors("AllowAnyOrigin");
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
@@ -39,7 +41,6 @@ app.UseDefaultFiles(newOptions);
 
 app.UseStaticFiles();
 
-app.UseCors("AllowAnyOrigin");
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
