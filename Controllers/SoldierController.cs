@@ -21,6 +21,14 @@ public class SoldierController : ControllerBase
     {
         List<Soldier> soldiers = await _context.Soldier.ToListAsync(); 
         return soldiers;
+
+        if(soldiers != null)
+        {
+            return Ok(soldiers);
+        }
+        else{
+            return NotFound();
+        }
     }
 
     [HttpGet("{id}")]
