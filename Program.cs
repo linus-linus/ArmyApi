@@ -4,7 +4,9 @@ using Microsoft.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddDbContext<ArmyContext>( options => options.UseSqlite ("Data Source=ArmyAPI.db"));
+builder.Services.AddDbContext<ArmyContext>( 
+    options => options.UseSqlite("Data Source=ArmyAPI.db")
+    );
 
 builder.Services.AddCors(
     options => {
@@ -24,6 +26,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
+
+app.UseCors("AllowAnyOrigin");
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
