@@ -8,8 +8,8 @@ builder.Services.AddDbContext<ArmyContext>( options => options.UseSqlite ("Data 
 
 builder.Services.AddCors(
     options => {
-        options.AddPolicy("AllowAnyOrigin",
-            policies => policies
+        options.AddPolicy("AllowAll",
+            builder => builder
                 .AllowAnyOrigin()
                 .AllowAnyMethod()
                 .AllowAnyHeader()
@@ -32,6 +32,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseCors("AllowAll");
+
 DefaultFilesOptions newOptions = new DefaultFilesOptions();
 newOptions.DefaultFileNames.Add("index.html");
 
@@ -39,7 +41,6 @@ app.UseDefaultFiles(newOptions);
 
 app.UseStaticFiles();
 
-app.UseCors("AllowAnyOrigin");
 app.UseHttpsRedirection();
 
 app.UseAuthorization();

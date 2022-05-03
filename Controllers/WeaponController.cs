@@ -45,7 +45,8 @@ public class WeaponController : ControllerBase
     {
         _context.Weapon.Add(newWeapon);
         await _context.SaveChangesAsync();
-        return CreatedAtAction("Get", new {id = newWeapon.Id}, newWeapon);
+        
+        return CreatedAtAction("Get", new { id = newWeapon.Id}, newWeapon);
     }
 
     [HttpDelete("{id}")]

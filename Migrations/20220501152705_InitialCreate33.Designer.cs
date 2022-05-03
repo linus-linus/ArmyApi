@@ -3,6 +3,7 @@ using System;
 using ArmyAPI.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ArmyAPI.Migrations
 {
     [DbContext(typeof(ArmyContext))]
-    partial class ArmyContextModelSnapshot : ModelSnapshot
+    [Migration("20220501152705_InitialCreate33")]
+    partial class InitialCreate33
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "6.0.4");
