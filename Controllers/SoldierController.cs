@@ -88,7 +88,7 @@ public class SoldierController : ControllerBase
             return BadRequest();
         }
         else{
-            return CreatedAtAction("Get", new { id = newSoldier.Id}, newSoldier);
+            return CreatedAtAction("GetSoldiers", new { id = newSoldier.Id}, newSoldier);
         }
 
     }
