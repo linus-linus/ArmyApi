@@ -67,7 +67,6 @@ public class WeaponController : ControllerBase
         
     }
 
-
     [HttpPut]
     public async Task<ActionResult<Weapon>> Put(Weapon editedWeapon)
     {
