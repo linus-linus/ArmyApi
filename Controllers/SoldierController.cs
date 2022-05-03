@@ -45,19 +45,37 @@ public class SoldierController : ControllerBase
     {
         List<Soldier> soldier = await _context.Soldier.Where(_soldier => _soldier.Department == department).ToListAsync();
     
-        return soldier;
-
-        //Legg inn if/else !!!!!!!!!!!!!!!!!
+        if(soldier != null)
+        {
+            return soldier;
+        }else
+        {
+            List<Soldier> emptyList = new List<Soldier>{
+                new Soldier{Id = -99, Department = "Not Found"}
+            };
+            return emptyList;
+        }
+        
     }
  
     [HttpPut]
     public async Task<ActionResult<Soldier>> Put(Soldier editedInfo)
     {
-        _context.Entry(editedInfo).State = EntityState.Modified;
-        await _context.SaveChangesAsync();
+        
+        if(editedInfo == null)
+            {
+               return BadRequest("Soldier is null"); 
+            }
+            else
+            {
+                _context.Entry(editedInfo).State = EntityState.Modified;
+                 await _context.SaveChangesAsync();
 
-        return editedInfo;
+                return Ok(editedInfo);
+            }
     }
+
+
     
     [HttpPost]
     public async Task<ActionResult<Soldier>> Post(Soldier newSoldier)
@@ -65,7 +83,14 @@ public class SoldierController : ControllerBase
         _context.Soldier.Add(newSoldier);
         await _context.SaveChangesAsync(); 
 
-        return CreatedAtAction("Get", new { id = newSoldier.Id}, newSoldier);
+         if (newSoldier == null)
+        {
+            return BadRequest();
+        }
+        else{
+            return CreatedAtAction("Get", new { id = newSoldier.Id}, newSoldier);
+        }
+
     }
 
     [HttpDelete("{id}")]
