@@ -31,6 +31,17 @@ public class VehicleController : ControllerBase
         return vehicle;
     }
 
+    [HttpGet]
+    [Route("[action]/{category}")]
+    public async Task<List<Vehicle>> GetCategory(string category)
+    {
+        List<Vehicle> vehicle = await _context.Vehicle.Where(_vehicle => _vehicle.Category == category).ToListAsync();
+    
+        return vehicle;
+
+        //Legg inn if/else !!!!!!!!!!!!!!!!!
+    }
+
     [HttpPut]
     public async Task<ActionResult<Vehicle>> Put(Vehicle editedVehicle)
     {
