@@ -10,8 +10,8 @@ builder.Services.AddDbContext<ArmyContext>(
 
 builder.Services.AddCors(
     options => {
-        options.AddPolicy("AllowAnyOrigin",
-            policies => policies
+        options.AddPolicy("AllowAll",
+            builder => builder
                 .AllowAnyOrigin()
                 .AllowAnyMethod()
                 .AllowAnyHeader()
@@ -36,7 +36,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseCors("AllowAnyOrigin");
+app.UseCors("AllowAll");
 
 DefaultFilesOptions newOptions = new DefaultFilesOptions();
 newOptions.DefaultFileNames.Add("index.html");

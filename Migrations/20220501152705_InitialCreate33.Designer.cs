@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ArmyAPI.Migrations
 {
     [DbContext(typeof(ArmyContext))]
-    [Migration("20220503074836_InitialCreate36")]
-    partial class InitialCreate36
+    [Migration("20220501152705_InitialCreate33")]
+    partial class InitialCreate33
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

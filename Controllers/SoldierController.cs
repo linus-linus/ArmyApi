@@ -38,7 +38,18 @@ public class SoldierController : ControllerBase
         }
 
     }
+    
+    [HttpGet]
+    [Route("[action]/{department}")]
+    public async Task<List<Soldier>> GetDepartment(string department)
+    {
+        List<Soldier> soldier = await _context.Soldier.Where(_soldier => _soldier.Department == department).ToListAsync();
+    
+        return soldier;
 
+        //Legg inn if/else !!!!!!!!!!!!!!!!!
+    }
+ 
     [HttpPut]
     public async Task<ActionResult<Soldier>> Put(Soldier editedInfo)
     {
@@ -65,4 +76,7 @@ public class SoldierController : ControllerBase
         await _context.SaveChangesAsync();
         return NoContent();
     }
+
+
  }
+

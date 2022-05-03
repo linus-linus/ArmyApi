@@ -31,17 +31,12 @@ public class WeaponController : ControllerBase
         return weapon;
     }
 
-    [HttpGet("{type}")]
+    [HttpGet]
     [Route("[action]/{type}")]
-    public async Task<ActionResult<List<Weapon>>> Get(string type)
+    public async Task<List<Weapon>> GetType(string type)
     {        
-        List<Weapon> weapons = await _context.Weapon
-            .Where( 
-                weapon => weapon.Type.ToLower().Contains(type.ToLower()) 
-            )
-            .ToListAsync();
-
-        return weapons;  
+        List<Weapon> weapon = await _context.Weapon.Where(_weapon => _weapon.Type == type).ToListAsync();
+        return weapon;  
     }
 
 
@@ -59,7 +54,8 @@ public class WeaponController : ControllerBase
     {
         _context.Weapon.Add(newWeapon);
         await _context.SaveChangesAsync();
-        return CreatedAtAction("Get", new {id = newWeapon.Id}, newWeapon);
+        
+        return CreatedAtAction("Get", new { id = newWeapon.Id}, newWeapon);
     }
 
     [HttpDelete("{id}")]

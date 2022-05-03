@@ -40,6 +40,16 @@ public class VehicleController : ControllerBase
         return editedVehicle;
     }
 
+    [HttpPost]
+    public async Task<ActionResult<Vehicle>> Post(Vehicle newVehicle)
+    {
+    _context.Vehicle.Add(newVehicle);
+    await _context.SaveChangesAsync();
+
+    return CreatedAtAction("Get", new { id = newVehicle.Id}, newVehicle);
+    }
+
+
     [HttpDelete("{id}")]
     public async Task<ActionResult> Delete(int id)
     {
