@@ -4,7 +4,9 @@ using Microsoft.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddDbContext<ArmyContext>( options => options.UseSqlite ("Data Source=ArmyAPI.db"));
+builder.Services.AddDbContext<ArmyContext>( 
+    options => options.UseSqlite("Data Source=ArmyAPI.db")
+    );
 
 builder.Services.AddCors(
     options => {
@@ -33,6 +35,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseCors("AllowAnyOrigin");
 
 DefaultFilesOptions newOptions = new DefaultFilesOptions();
 newOptions.DefaultFileNames.Add("index.html");
