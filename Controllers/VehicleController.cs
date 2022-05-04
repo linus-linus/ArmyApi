@@ -21,14 +21,29 @@ public class VehicleController : ControllerBase
     public async Task<ActionResult<List<Vehicle>>> GetVehicles()
     {
         List<Vehicle> vehicles = await _context.Vehicle.ToListAsync();
-        return vehicles;
+
+        if(vehicles != null)
+        {
+            return Ok(vehicles);
+        }
+        else{
+            return NotFound();
+        }
     }
 
     [HttpGet("{id}")]
     public async Task<ActionResult<Vehicle>> Get(int id)
     {
         Vehicle vehicle = await _context.Vehicle.FindAsync(id);
-        return vehicle;
+
+        if(vehicle != null)
+        {
+            return vehicle;
+        }
+        else
+        {
+            return NotFound();
+        }
     }
 
     [HttpGet]
@@ -36,10 +51,18 @@ public class VehicleController : ControllerBase
     public async Task<List<Vehicle>> GetCategory(string category)
     {
         List<Vehicle> vehicle = await _context.Vehicle.Where(_vehicle => _vehicle.Category == category).ToListAsync();
-    
-        return vehicle;
 
-        //Legg inn if/else !!!!!!!!!!!!!!!!!
+        if(vehicle != null)
+        {
+            return vehicle;
+        }
+        else
+        {
+            List<Vehicle> emptyList = new List<Vehicle>{
+                new Vehicle{Id = -99, Category = "Not Found"}
+            };
+            return emptyList;
+        }
     }
 
     [HttpPut]
@@ -48,7 +71,17 @@ public class VehicleController : ControllerBase
         _context.Entry(editedVehicle).State = EntityState.Modified;
         await _context.SaveChangesAsync();
 
-        return editedVehicle;
+        if(editedVehicle == null)
+            {
+               return BadRequest("Vehicle is null"); 
+            }
+            else
+            {
+                _context.Entry(editedVehicle).State = EntityState.Modified;
+                 await _context.SaveChangesAsync();
+
+                return Ok(editedVehicle);
+            }
     }
 
     [HttpPost]
@@ -57,7 +90,13 @@ public class VehicleController : ControllerBase
     _context.Vehicle.Add(newVehicle);
     await _context.SaveChangesAsync();
 
-    return CreatedAtAction("Get", new { id = newVehicle.Id}, newVehicle);
+     if (newVehicle == null)
+        {
+            return BadRequest();
+        }
+        else{
+            return CreatedAtAction("Get", new { id = newVehicle.Id}, newVehicle);
+        }
     }
 
 

@@ -21,14 +21,30 @@ public class WeaponController : ControllerBase
     public async Task<ActionResult<List<Weapon>>> GetWeapons()
     {
         List<Weapon> weapons = await _context.Weapon.ToListAsync();
-        return weapons;
+
+        if(weapons != null)
+        {
+            return Ok(weapons);
+        }
+        else{
+            return NotFound();
+        }
+        
     }
 
     [HttpGet("{id}")]
     public async Task<ActionResult<Weapon>> Get(int id)
     {
         Weapon weapon = await _context.Weapon.FindAsync(id);
-        return weapon;
+
+        if(weapon != null)
+        {
+            return Ok(weapon);
+        }
+        else
+        {
+            return NotFound();
+        }
     }
 
     [HttpGet]
@@ -36,9 +52,20 @@ public class WeaponController : ControllerBase
     public async Task<List<Weapon>> GetType(string type)
     {        
         List<Weapon> weapon = await _context.Weapon.Where(_weapon => _weapon.Type == type).ToListAsync();
-        return weapon;  
+        
+        if(weapon != null)
+        {
+            return weapon;
+        }
+        else
+        {
+            List<Weapon> emptyList = new List<Weapon>{
+                new Weapon{Id = -99, Type = "Not Found"}
+            };
+            return emptyList;
+        }
+        
     }
-
 
     [HttpPut]
     public async Task<ActionResult<Weapon>> Put(Weapon editedWeapon)
@@ -46,7 +73,15 @@ public class WeaponController : ControllerBase
         _context.Entry(editedWeapon).State = EntityState.Modified;
         await _context.SaveChangesAsync();
         
-        return editedWeapon;
+        if(editedWeapon is null)
+        {
+            return BadRequest("Weapon is null");
+        }
+        else
+        {
+            return editedWeapon;
+        }
+        
     }
 
     [HttpPost]
@@ -54,12 +89,19 @@ public class WeaponController : ControllerBase
     {
         _context.Weapon.Add(newWeapon);
         await _context.SaveChangesAsync();
+
+        if (newWeapon == null)
+        {
+            return BadRequest();
+        }
+        else{
+            return CreatedAtAction("Get", new { id = newWeapon.Id}, newWeapon);
+        }
         
-        return CreatedAtAction("Get", new { id = newWeapon.Id}, newWeapon);
     }
 
     [HttpDelete("{id}")]
-    public async Task<ActionResult> Delete(int id)
+    public async Task<IActionResult> Delete(int id)
     {
         Weapon weapon = await _context.Weapon.FindAsync(id);
         _context.Weapon.Remove(weapon);
