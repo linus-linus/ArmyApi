@@ -10,6 +10,44 @@
     <div>
       <h1>Velkommen forsvarets web API</h1>
       <!-- REDGJØR FOR HVORDAN MAN BRUKER APIET -->
+      <section>
+        <h3>Endepunkter</h3>
+        <section>
+          <h2>Soldier</h2>
+          <ul>
+            <li>GET - få tak i alle Soldater: /Soldier</li>
+            <li>POST - lagre soldat: /Soldier</li>
+            <li>PUT - Endre soldat: /Soldier</li>
+            <li>POST - lagre bilde: /ImageUpload/PostImage</li>
+            <li>DELETE - slette soldat: /Soldier/{id}</li>
+            <li>
+              GET - får tak i soldater fra avdeling:
+              /Soldier/GetDepartment/{department}
+            </li>
+          </ul>
+        </section>
+        <section>
+          <h2>Fartøy</h2>
+          <ul>
+            <li>GET - få tak i alle fartøy: /Vehicle</li>
+            <li>POST - lagre fartøy: /Vehicle</li>
+            <li>DELETE - slette fartøy: /Vehicle/{id}</li>
+            <li>
+              GET - får tak i fartøy fra kategori:
+              /Soldier/GetCategory/{Category}
+            </li>
+          </ul>
+        </section>
+        <section>
+          <h2>Weapon</h2>
+          <ul>
+            <li>GET - få tak i alle Våpen: /Weapon</li>
+            <li>POST - lagre Våpen: /Weapon</li>
+            <li>DELETE - slette fartøy: /Weapon/{id}</li>
+            <li>GET - får tak i våpen på Type: /Weapon/GetType/{typey}</li>
+          </ul>
+        </section>
+      </section>
     </div>
   </body>
 </html>
