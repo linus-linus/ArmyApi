@@ -16,11 +16,12 @@ public class SoldierController : ControllerBase
     {
         _context = context;
     }
+
     [HttpGet]
     public async Task<ActionResult<List<Soldier>>> GetSoldiers()
     {
         List<Soldier> soldiers = await _context.Soldier.ToListAsync(); 
-        return soldiers;
+        
 
         if(soldiers != null)
         {

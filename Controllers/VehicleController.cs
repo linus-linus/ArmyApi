@@ -21,7 +21,6 @@ public class VehicleController : ControllerBase
     public async Task<ActionResult<List<Vehicle>>> GetVehicles()
     {
         List<Vehicle> vehicles = await _context.Vehicle.ToListAsync();
-        return vehicles;
 
         if(vehicles != null)
         {
@@ -36,7 +35,6 @@ public class VehicleController : ControllerBase
     public async Task<ActionResult<Vehicle>> Get(int id)
     {
         Vehicle vehicle = await _context.Vehicle.FindAsync(id);
-        return vehicle;
 
         if(vehicle != null)
         {
@@ -53,8 +51,6 @@ public class VehicleController : ControllerBase
     public async Task<List<Vehicle>> GetCategory(string category)
     {
         List<Vehicle> vehicle = await _context.Vehicle.Where(_vehicle => _vehicle.Category == category).ToListAsync();
-    
-        return vehicle;
 
         if(vehicle != null)
         {
